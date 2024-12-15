@@ -44,13 +44,13 @@ class AuthTokenSerializer(serializers.Serializer):
     token = serializers.CharField(label=_("Token"), read_only=True)
 
     def validate(self, attrs):
-        username = attrs.get("email")
+        email = attrs.get("email")
         password = attrs.get("password")
 
-        if username and password:
+        if email and password:
             user = authenticate(
                 request=self.context.get("request"),
-                username=username,
+                email=email,
                 password=password,
             )
 
